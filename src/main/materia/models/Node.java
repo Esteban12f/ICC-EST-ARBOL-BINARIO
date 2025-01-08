@@ -6,7 +6,7 @@ public class Node {
     private Node right;
     
     public Node(int value) {
-    
+        this.value = value;
     }
 
     public int getValue() {
