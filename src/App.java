@@ -1,6 +1,9 @@
+import java.util.List;
+
 import main.Ejercicio_03_listLevels.ListLevels;
 import main.materia.controllers.ArbolBinario;
 import main.materia.controllers.ArbolRecorridos;
+import main.materia.models.Node;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -38,7 +41,8 @@ public class App {
             arbolBinario.insert(valores[i]);
         }
         arbolBinario.printTree();
-        lista = levels.listLevels(arbolBinario.getRoot());
+        List<List<Node>> lista = levels.listLevels(arbolBinario.getRoot());
+        levels.printList(lista);
 
     }
 

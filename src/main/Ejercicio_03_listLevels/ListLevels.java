@@ -1,7 +1,9 @@
 package main.Ejercicio_03_listLevels;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
 import main.materia.models.Node;
 
@@ -9,26 +11,42 @@ public class ListLevels {
     
     @SuppressWarnings("null")
     public List<List<Node>> listLevels(Node root){
-        List<List<Node>> lista1 = null;
-        List<Node> lista2 = null;
+        List<List<Node>> lista1 = new ArrayList<>();
+
         if (root != null){
-            lista2.add(root);
-            lista1.add(lista2);
+            Queue<Node> colaNodos = new LinkedList<>();
+            colaNodos.add(root);
 
-            lista2.add(root.getLeft());
-            lista2.add(root.getRight());
-            lista1.add(lista2);
+            while (!colaNodos.isEmpty()) {
+                int nivelesCola = colaNodos.size();
+                List<Node> lista2 = new ArrayList<>();
 
-            for (int i = 0; i < lista1.size(); i++){
-                lista2.add(i, root.getLeft());
-                lista2.add(i, root.getRight());
-            }
-            
-            
+                for (int i = 0; i < nivelesCola; i++){
+                    Node node = colaNodos.poll();
+                    lista2.add(node);
+                    if (node.getLeft() != null) {
+                        colaNodos.add(node.getLeft());
+                    }
+        
+                    if (node.getRight() != null){
+                        colaNodos.add(node.getRight());
+                    }
+                }
+                lista1.add(lista2);
+        }
 
         }
-        
+        return lista1;
+    }
 
+    public void printList(List<List<Node>> listaDeListas) {
+        for (int i = 0; i < listaDeListas.size(); i++){
+            List<Node> listaNodos= listaDeListas.get(i);
+            for (Node node : listaNodos){
+                System.out.print(node.getValue() + " ->");
+            }
+            System.out.println("");
+        }
     }
 
 }
