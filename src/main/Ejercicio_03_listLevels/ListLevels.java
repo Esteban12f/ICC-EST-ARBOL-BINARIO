@@ -40,10 +40,14 @@ public class ListLevels {
     }
 
     public void printList(List<List<Node>> listaDeListas) {
+        boolean isFinished = false;
         for (int i = 0; i < listaDeListas.size(); i++){
             List<Node> listaNodos= listaDeListas.get(i);
-            for (Node node : listaNodos){
-                System.out.print(node.getValue() + " ->");
+            for (int j = 0; j < listaNodos.size(); j++){
+                System.out.print(listaNodos.get(j).getValue());
+                if (!(j == listaNodos.size() - 1)){
+                    System.out.print(" -> ");
+                }
             }
             System.out.println("");
         }
