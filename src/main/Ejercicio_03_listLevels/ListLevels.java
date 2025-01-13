@@ -8,8 +8,7 @@ import java.util.Queue;
 import main.materia.models.Node;
 
 public class ListLevels {
-    
-    @SuppressWarnings("null")
+
     public List<List<Node>> listLevels(Node root){
         List<List<Node>> lista1 = new ArrayList<>();
 
@@ -40,12 +39,11 @@ public class ListLevels {
     }
 
     public void printList(List<List<Node>> listaDeListas) {
-        boolean isFinished = false;
         for (int i = 0; i < listaDeListas.size(); i++){
             List<Node> listaNodos= listaDeListas.get(i);
             for (int j = 0; j < listaNodos.size(); j++){
                 System.out.print(listaNodos.get(j).getValue());
-                if (!(j == listaNodos.size() - 1)){
+                 if (!(j == listaNodos.size() - 1)){
                     System.out.print(" -> ");
                 }
             }

@@ -1,6 +1,7 @@
 import java.util.List;
 
 import main.Ejercicio_03_listLevels.ListLevels;
+import main.materia.controllers.ArbolAVL;
 import main.materia.controllers.ArbolBinario;
 import main.materia.controllers.ArbolRecorridos;
 import main.materia.models.Node;
@@ -8,7 +9,8 @@ import main.materia.models.Node;
 public class App {
     public static void main(String[] args) throws Exception {
         // runArbolBinario();
-        runEjercicio3();
+        // runEjercicio3();
+        runArbolAvl();
     }
 
     public static void runArbolBinario(){
@@ -44,6 +46,17 @@ public class App {
         List<List<Node>> lista = levels.listLevels(arbolBinario.getRoot());
         levels.printList(lista);
 
+    }
+
+    public static void runArbolAvl(){
+        int[] values = {10, 20, 15, 24, 9, 8, 21, 23, 50, 25};
+
+        ArbolAVL aAvl = new ArbolAVL();
+        for (int i = 0; i < values.length; i++){
+            aAvl.insert(values[i]);
+            aAvl.printTree();
+        }
+        
     }
 
 }
