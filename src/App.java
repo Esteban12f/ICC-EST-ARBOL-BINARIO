@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 
 import main.Ejercicio_01_insert.InsertBTSTest;
 import main.Ejercicio_02_invert.InvertBinaryTree;
@@ -10,13 +11,14 @@ import main.materia.controllers.ArbolRecorridos;
 import main.materia.models.Node;
 
 public class App {
+    
     public static void main(String[] args) throws Exception {
         // runArbolBinario();
         // runArbolAvl();
-        runEjercicio1();
-        runEjercicio2();
-        runEjercicio3();
-        runEjercicio4();
+        runEjercicio(1);
+        runEjercicio(2);
+        runEjercicio(3);
+        runEjercicio(4);
     }
 
     public static void runArbolBinario(){
@@ -50,78 +52,44 @@ public class App {
         
     }
 
-    public static void runEjercicio1(){
-        System.out.println("Ejercicio 1:");
+    public static void runEjercicio(int ejercicio){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ejercicio " + ejercicio + ":");
         InsertBTSTest insertBTSTest = new InsertBTSTest();
         ListLevels levels = new ListLevels();
         
-        int [] values = {5, 3, 7, 2, 4, 6, 8};
-        
-        for(int i = 0; i < values.length; i++){
-            insertBTSTest.insert(values[i]);
+        System.out.println("Ingrese la cantidad de nodos q desea ingresar: ");
+        int values = scanner.nextInt();
+        for(int i = 0; i < values; i++){
+            System.out.println("Ingrese el valor del nodo " + (i+1) + ":");
+            insertBTSTest.insert(scanner.nextInt());
         }
 
         List<List<Node>> lista = levels.listLevels(insertBTSTest.getRoot());
-        levels.printList(lista);
-        System.out.println("");
-    }
-
-    public static void runEjercicio2(){
-        System.out.println("Ejercicio 2:");
-        InsertBTSTest insertBTSTest = new InsertBTSTest();
-        ListLevels levels = new ListLevels();
-        
-        int [] values = {4, 2, 7, 1, 3, 6, 9};
-        
-        for(int i = 0; i < values.length; i++){
-            insertBTSTest.insert(values[i]);
-        }
-
         System.out.println("Arbol ingresado: ");
-        List<List<Node>> lista = levels.listLevels(insertBTSTest.getRoot());
         levels.printList(lista);
         System.out.println("");
+
+        switch (ejercicio) {
+            case 2:
+                InvertBinaryTree invertBinaryTree = new InvertBinaryTree();
+                invertBinaryTree.invertTree(insertBTSTest.getRoot());
+                System.out.println("Arbol invertido: ");
+                lista = levels.listLevels(insertBTSTest.getRoot());
+                levels.printList(lista);
+                System.out.println("");
+                break;
         
-        InvertBinaryTree invertBinaryTree = new InvertBinaryTree();
-        invertBinaryTree.invertTree(insertBTSTest.getRoot());
 
-        System.out.println("Arbol invertido: ");
-        lista = levels.listLevels(insertBTSTest.getRoot());
-        levels.printList(lista);
-        System.out.println("");
-    }
-
-    public static void runEjercicio3(){
-        System.out.println("Ejercicio 3:");
-        ArbolBinario arbolBinario = new ArbolBinario();
-        ListLevels levels = new ListLevels();
-
-        int[] valores = {4, 2, 7, 1, 3, 6, 9};
-
-        for (int i = 0; i < valores.length; i++){
-            arbolBinario.insert(valores[i]);
+            case 4:
+                Depth depth = new Depth();
+                int profundidad = depth.maxDepth(insertBTSTest.getRoot());
+                System.out.println("La profundidad del arbol es: " + profundidad);
+                break;
+            
+            default:
+                break;
         }
-        List<List<Node>> lista = levels.listLevels(arbolBinario.getRoot());
-        levels.printList(lista);
-        System.out.println("");
-    }
-
-    public static void runEjercicio4(){
-        System.out.println("Ejercicio 4: ");
-        InsertBTSTest insertBTSTest = new InsertBTSTest();
-        ListLevels levels = new ListLevels();
-        
-        int [] values = {4, 2, 7, 1, 3, 8};
-        
-        for(int i = 0; i < values.length; i++){
-            insertBTSTest.insert(values[i]);
-        }
-
-        List<List<Node>> lista = levels.listLevels(insertBTSTest.getRoot());
-        levels.printList(lista);
-        Depth depth = new Depth();
-        int profundidad = depth.maxDepth(insertBTSTest.getRoot());
-        System.out.println("La profundidad del arbol es: " + profundidad);
     }
 
 }
