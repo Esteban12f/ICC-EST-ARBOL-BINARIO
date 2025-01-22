@@ -167,11 +167,12 @@ public class App {
         grafo.addEdge(nodo2, nodo1);
         grafo.addEdge(nodo4, nodo1);
         grafo.addEdge(nodo7, nodo8);
-        grafo.addEdge(nodo1, nodo0);
         grafo.addEdge(nodo8, nodo1);
 
         grafo.printGraph();
 
+        grafo.getDFS(nodo0);
         grafo.getDFS(nodo0, nodo7);
     }
+
 }

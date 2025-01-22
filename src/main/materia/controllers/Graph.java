@@ -62,28 +62,32 @@ public class Graph {
     }
 
 
-    public void getDFS(NodeGraph start, NodeGraph finish){
+    public boolean getDFS(NodeGraph start, NodeGraph finish){
         Set<NodeGraph> visitados = new HashSet<>();
-        System.out.println("DFS desde el nodo: " + start.getValue());
-        getDFSUtil(start, finish, visitados);
+        System.out.println("DFS desde el nodo " + start.getValue() + " hasta el nodo " + finish.getValue());
+        boolean encontrado = getDFSUtil(start, finish, visitados);
         System.out.println();
+        return encontrado;
     }
 
-    private void getDFSUtil(NodeGraph node, NodeGraph destino, Set<NodeGraph> visitados){
+    private boolean getDFSUtil(NodeGraph node, NodeGraph destino, Set<NodeGraph> visitados){
         if (visitados.contains(node)){
-            return;
+            return false;
         }
 
         System.out.print(node.getValue() + " ");
         visitados.add(node);
 
         if (node.equals(destino)){
-            return;
+            return true;
         }
 
         for (NodeGraph neighbor : node.getNeighbors()){
-            getDFSUtil(neighbor, visitados);
+            if (getDFSUtil(neighbor, destino, visitados)){
+                return true;
+            }
         }
+        return false;
     }
 
     public void getBFS(NodeGraph start){
